@@ -25,6 +25,9 @@ function getBilder(){
 			var holder=document.createElement('div');
 				holder.className="puff";
 
+			var inner=document.createElement('div');
+				inner.className="inner";
+
 			var created_time=document.createElement('span');
 				created_time.className="timestamp";
 			
@@ -38,9 +41,9 @@ function getBilder(){
 			
 			images.setAttribute('src',data[i].images.standard_resolution.url);
 			
-			holder.appendChild(created_time);
-			//holder.appendChild(caption);
-			holder.appendChild(images);
+			holder.appendChild(inner);
+			inner.appendChild(images);
+			
 
 			document.getElementById('bacon_bilder').appendChild(holder);
 		}

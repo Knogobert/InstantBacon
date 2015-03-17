@@ -19,7 +19,8 @@ header{
 
 .puff_box {
 	overflow:hidden;
-	margin:20px 0;
+
+	padding-top:50px;
 	}
 	.puff_box p, .puff_box h3  {
 	margin:5px 5px;
@@ -31,12 +32,13 @@ header{
 	margin-bottom:30px;
 	}
 	.puff > .inner {
-	margin:10px 5px 10px 10px;
-	padding: 20px 20px 20px 20px;
+	margin:0px 5px 5px 0px;
+	padding: 5px;
 	}
 		.puff img {
 		width: 100%;
 		}
+
 		
 footer {
 	margin: 100px auto 25px auto;
