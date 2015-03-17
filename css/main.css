@@ -1,0 +1,75 @@
+header{
+	margin: 0 auto;
+	text-align:center;
+	max-width: 1000px;
+	}
+	header input{
+		font-size:20px;
+		padding:20px;	
+		border: 1px solid black;
+		width:50%;
+		}
+	#search_button{
+		background-color: black;
+		color:#fff;
+		padding: 20px 30px;
+		width:20%;
+		margin-left:50px;
+		}
+
+.puff_box {
+	overflow:hidden;
+	margin:20px 0;
+	}
+	.puff_box p, .puff_box h3  {
+	margin:5px 5px;
+	}	
+	.puff_box > .puff {
+	width:100%;
+	float:none;
+	position: relative;
+	margin-bottom:30px;
+	}
+	.puff > .inner {
+	margin:10px 5px 10px 10px;
+	padding: 20px 20px 20px 20px;
+	}
+		.puff img {
+		width: 100%;
+		}
+		
+footer {
+	margin: 100px auto 25px auto;
+	max-width: 1000px;
+	text-align: center;
+}
+		
+		
+@media (min-width: 460px) {  
+/* ------------------------------------------- */
+	.puff_box > .puff {
+		width:50%;
+		float:left;
+		margin:0px;
+		}
+		
+		.puff_box > .puff:nth-child(2n + 3) {
+		clear:left;
+		}		
+
+}@media (min-width: 860px) { 
+/* ------------------------------------------- */
+.puff_box {
+	margin: 0 auto;
+	max-width:1000px;
+	}
+	.puff_box > .puff {
+		width:33%;
+		}
+		.puff_box > .puff:nth-child(2n + 3) {
+			clear:none;
+			}		
+		.puff_box > .puff:nth-child(3n + 4) {
+			clear:left;
+			}	
+}
