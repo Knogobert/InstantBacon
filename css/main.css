@@ -1,3 +1,8 @@
+body {
+	font-family: arial;
+	font-size:11px;
+	}
+
 header{
 	margin: 0 auto;
 	text-align:center;
@@ -38,6 +43,14 @@ header{
 		.puff img {
 		width: 100%;
 		}
+
+
+.puff .caption {
+	background-color: #000;
+	color: #fff;
+	padding: 10px;
+	text-align:center;
+	}
 
 		
 footer {
