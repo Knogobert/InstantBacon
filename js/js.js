@@ -10,12 +10,10 @@ var userId 		= '144505288';
 var clientId	= 'a880b37bc8c6409fa2fecd66255b7e44';
 var apiUri		= 'http://www.niklasbrandstrom.se/api/';
 
-
-
 function getBilder(){ 	
-	JSONPRequest("https://api.instagram.com/v1/users/"+userId+"/media/recent/?access_token="+accessToken+"&callback=callback_bilder ");
+	JSONPRequest("https://api.instagram.com/v1/users/"+userId+"/media/recent/?access_token="+accessToken+"&callback=callbackBilder ");
 	}
-	function callback_bilder(response){
+	function callbackBilder(response){
 		console.log(response);	
 		
 		var data;
@@ -52,10 +50,10 @@ function getBilder(){
 function getUserInfo (){
 	var username = document.getElementById('username').value;
 	var accessToken = '25113078.dbe2570.254bdb0509e44bfdbdd7810ddb68f219';
-	JSONPRequest('https://api.instagram.com/v1/users/search?q='+username+'&access_token='+accessToken+'&callback=getUsername');
+	JSONPRequest('https://api.instagram.com/v1/users/search?q='+username+'&access_token='+accessToken+'&callback=callbackUserInfo');
 }
 
-function getUsername (response){
+function callbackUserInfo (response){
 	console.log(response);
 	
 	var data;
@@ -65,9 +63,10 @@ function getUsername (response){
 		console.log('Retrieved the user ID from instagrams API');
 		userID = data[0].id;
 		console.log('user ID is: '+userID);
+		
+		getBilder();
+		
 	}else{
 		console.log('Could not retrieve the user ID from instagrams API');
 	}
 }
-
-getBilder();
