@@ -61,11 +61,7 @@ function getUsername (response){
 	var data;
 	data = response.data;
 	
-	if (data[0].length >= 1){
-		console.log('Retrieved the user ID from instagrams API');
-		userID = data[0].id;
-		console.log('user ID is: '+userID);
-	}else if (data[0].length = 1){ //fick lösa det såhär sålänge tills jag förstår varför den inte vill ha 1 >= 1
+	if (data[0].length = 1){
 		console.log('Retrieved the user ID from instagrams API');
 		userID = data[0].id;
 		console.log('user ID is: '+userID);
