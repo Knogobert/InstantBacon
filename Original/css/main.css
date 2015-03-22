@@ -13,9 +13,6 @@ header{
 		padding:20px;	
 		border: 1px solid black;
 		width:50%;
-		}header input:focus {
-			border-bottom: solid 5px #0085CA;
-			outline: none;
 		}
 	#search_button{
 		background-color: black;
@@ -42,8 +39,6 @@ header{
 	.puff > .inner {
 	margin:0px 5px 5px 0px;
 	padding: 5px;
-	position: relative;
-    display: table;
 	}
 		.puff img {
 		width: 100%;
@@ -51,48 +46,12 @@ header{
 
 
 .puff .caption {
-	display: none;
-	position: absolute;
-	bottom: 5px;
-	left: 5px;
-	right: 5px;
 	background-color: #000;
 	color: #fff;
 	padding: 10px;
 	text-align:center;
-	margin-top: -100px;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-	}.puff .inner:hover .caption {
-		display:block;
-		}
+	}
 
-.hide {
-	display: none !important;
-}
-
-.show {
-	display: block !important;
-}
-
-.textHover {
-    display:none;
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0; left:0;
-    text-align:center;
-    color:white;
-}
-.imgContain {
-    position:relative;
-    display:table;
-}
-.imgContain:hover .textHover {
-    display:block;
-}
 		
 footer {
 	margin: 100px auto 25px auto;
