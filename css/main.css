@@ -7,6 +7,7 @@ header{
 	margin: 0 auto;
 	text-align:center;
 	max-width: 1000px;
+	height: 100px;
 	}
 	header input{
 		font-size:20px;
@@ -49,6 +50,24 @@ header{
 		width: 100%;
 		}
 
+#centerDiv {
+	z-index: 5000;
+	position: fixed;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	max-width: 800px;
+	height: 0;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
 
 .puff .caption {
 	display: none;
@@ -61,43 +80,18 @@ header{
 	padding: 10px;
 	text-align:center;
 	margin-top: -100px;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
 	}.puff .inner:hover .caption {
 		display:block;
 		}
-
-.hide {
-	display: none !important;
-}
-
-.show {
-	display: block !important;
-}
-
-.textHover {
-    display:none;
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0; left:0;
-    text-align:center;
-    color:white;
-}
-.imgContain {
-    position:relative;
-    display:table;
-}
-.imgContain:hover .textHover {
-    display:block;
-}
 		
 footer {
 	margin: 100px auto 25px auto;
 	max-width: 1000px;
 	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 		
 		
