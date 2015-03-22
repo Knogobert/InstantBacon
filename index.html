@@ -7,14 +7,15 @@
 	</head>
 	<body>
 		<header>
-			
-			<input type="text" name="username" id="username" placeholder="Sök efter användare på instagram" value="jaredchambers"/>	
-			<input type="button" value="Sök" id="search_button" onclick="getUserInfo();"/>
-			
+			<div id="centerDiv">
+				<!-- onKeydown gör att man kan skicka iväg via enter-tangenten, value="jaredchambers" är bara för att göra det lättare för oss att developa-->
+				<input type="text" onKeydown="Javascript: if (event.keyCode==13) getUserInfo();" name="username" id="username" placeholder="Sök efter användare på instagram" value="jaredchambers"/>
+				<input type="button" value="Sök" id="search_button" onclick="getUserInfo();"/>
+			</div>
 		</header>
 		<main>
 			
-			<div class="puff_box" id="bacon_bilder">
+			<div class="puff_box" id="pictures">
 								
 			</div>
 			
