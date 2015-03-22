@@ -9,6 +9,14 @@ header{
 	max-width: 1000px;
 	height: 100px;
 	}
+	header select{
+		font-size:20px;
+		padding:20px;	
+		border: 1px solid black;
+		width:10%;
+		height:65px;
+		text-align:center;
+		}
 	header input{
 		font-size:20px;
 		padding:20px;	

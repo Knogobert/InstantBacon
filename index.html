@@ -8,9 +8,12 @@
 	<body>
 		<header>
 			<div id="centerDiv">
-				<!-- onKeydown gör att man kan skicka iväg via enter-tangenten, value="jaredchambers" är bara för att göra det lättare för oss att developa-->
-				<input type="text" onKeydown="Javascript: if (event.keyCode==13) getUserInfo();" name="username" id="username" placeholder="Sök efter användare på instagram" value="jaredchambers"/>
-				<input type="button" value="Sök" id="search_button" onclick="getUserInfo();"/>
+				<select id="search_type">
+				  <option value="user">User</option>
+				  <option value="hashtag">#</option>
+				</select>
+				<input type="text" name="username" id="username" placeholder="Sök efter användare på instagram" value="jaredchambers" />
+				<input type="button" value="Sök" id="search_button" />
 			</div>
 		</header>
 		<main>

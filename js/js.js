@@ -1,6 +1,21 @@
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
-var clientId	= 'a880b37bc8c6409fa2fecd66255b7e44';
-var apiUri		= 'http://www.niklasbrandstrom.se/api/';
+//var clientId	= 'a880b37bc8c6409fa2fecd66255b7e44'; används ej..
+//var apiUri		= 'http://www.niklasbrandstrom.se/api/'; används ej
+var countImg 		= '33'; // Antal bilder att visa
+
+document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
+document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+function pressEnter(e) {
+  var keyCode = e.keyCode;
+  if(keyCode==13) {
+    getUserInfo();
+  } 
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
 
 function JSONPRequest(url) {
     var s = document.createElement('script');
@@ -10,16 +25,24 @@ function JSONPRequest(url) {
     //inputTransition();
 	}
 
-function getBilder(userId){ 	
-	JSONPRequest("https://api.instagram.com/v1/users/"+userId+"/media/recent/?access_token="+accessToken+"&count=18&callback=callbackBilder ");
-	
+/* ------------------------------------------------------------------------------------------------------ */
+
+function getBilder(searchType,string){ 	
+		if(searchType === "user") {
+			JSONPRequest("https://api.instagram.com/v1/users/"+string+"/media/recent/?access_token="+accessToken+"&count="+countImg+"&callback=callbackBilder ");
+		} else if(searchType === "hashtag") {
+			JSONPRequest("https://api.instagram.com/v1/tags/"+string+"/media/recent/?access_token="+accessToken+"&count="+countImg+"&callback=callbackBilder");
+		} else {
+			alert('fel');	
+		}
+		
 	// Kallar på animeringen och bestämmer dess variabler enligt: animate(elem,styling,unit,from,to,time)
 	animate(
     	document.getElementById('centerDiv'),
     	"margin-top","px",parseInt(centerDivCSS.marginTop),40,animationLength
-	);
+	);		
+}
 
-	}
 	function callbackBilder(response){
 		console.log(response);	
 		
@@ -63,9 +86,19 @@ function getBilder(userId){
 		
 	}
 
-function getUserInfo (){
-	var username = document.getElementById('username').value;
-	JSONPRequest('https://api.instagram.com/v1/users/search?q='+username+'&access_token='+accessToken+'&callback=callbackUserInfo');
+/* ------------------------------------------------------------------------------------------------------ */
+
+function getUserInfo (){	
+	var searchType = document.getElementById('search_type').value;	
+	var searchString = document.getElementById('username').value;
+
+	if(searchType === "user") {
+		// Hämtar bilder efter Användarnamn
+		JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
+	} else {
+		// Hämtar bilder efter hashtag
+		getBilder('hashtag', searchString);
+		}	
 	}
 	function callbackUserInfo (response){
 		console.log(response);
@@ -75,12 +108,14 @@ function getUserInfo (){
 			console.log('Retrieved the user ID from instagrams API');
 			userID = data[0].id;
 			console.log('user ID is: '+userID);
-			getBilder(userID); // Hämtar och visar bilder
+			getBilder('user', userID); // Hämtar och visar bilder
 			
 		}else{
 			console.log('Could not retrieve the user ID from instagrams API');
 		}
 }
+
+/* ------------------------------------------------------------------------------------------------------ */
 
 // Animerar inputfältet
 var p = document.getElementById("centerDiv");
