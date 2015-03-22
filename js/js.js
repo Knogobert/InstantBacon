@@ -4,16 +4,22 @@ var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 var countImg 		= '33'; // Antal bilder att visa
 
 document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
+document.getElementById("username").addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
 document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
 
 /* ------------------------------------------------------------------------------------------------------ */
 
 function pressEnter(e) {
-  var keyCode = e.keyCode;
-  if(keyCode==13) {
-    getUserInfo();
-  } 
-}
+	  var keyCode = e.keyCode;
+	  if(keyCode==13) {
+	    getUserInfo();
+	  } 
+	}
+
+function selectAll() {
+    document.getElementById("username").focus();
+    document.getElementById("username").select();
+	}
 
 /* ------------------------------------------------------------------------------------------------------ */
 
