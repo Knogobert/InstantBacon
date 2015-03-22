@@ -29,10 +29,7 @@ function getBilder(userId){
 				inner.className="inner";
 			var caption=document.createElement('div');
 				caption.className="caption";
-				caption.id="caption"+i;
 			var images=document.createElement('img');
-				//images.setAttribute('onmouseenter', 'hoverText('+i+')');
-				//images.setAttribute('onmouseleave', 'removeText('+i+')');
 			
 			// Kontrollerar om bilden har kommentar eller ej
 			if(data[i].caption != null) { 
@@ -69,17 +66,3 @@ function getUserInfo (){
 			console.log('Could not retrieve the user ID from instagrams API');
 		}
 }
-/*
-function hoverText(i) {
-	/*if(document.getElementById('caption'+i).innerHTML=''){
-		// Visar inte ifall det inte finns något innehåll, funkar inte!
-	}else{*//*
-		document.getElementById('caption'+i).classList.remove('hide');
-		document.getElementById('caption'+i).classList.add('show');
-	
-}function removeText(i) {
-	document.getElementById('caption'+i).classList.remove('show');
-	document.getElementById('caption'+i).classList.add('hide');
-}*/
-
-//document.getElementById("userInfoLogin").addEventListener(, regValidateLogin, false);
