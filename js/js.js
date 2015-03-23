@@ -1,40 +1,38 @@
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
-//var clientId	= 'a880b37bc8c6409fa2fecd66255b7e44'; används ej..
-//var apiUri		= 'http://www.niklasbrandstrom.se/api/'; används ej
 var countImg 		= '100'; // Antal bilder att visa
 
+// Eventlistners
 document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
 document.getElementById("username").addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
 document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
-
-
-document.getElementsByName("search_type")['0'].addEventListener("click", switchPlaceholder); // Klickar man i text-rutan markar all text
-document.getElementsByName("search_type")['1'].addEventListener("click", switchPlaceholder); // Klickar man i text-rutan markar all text
+document.getElementsByName("search_type")['0'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'user'-radio
+document.getElementsByName("search_type")['1'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'hashtag'-radio
 
 
 
 /* ------------------------------------------------------------------------------------------------------ */
 
 function switchPlaceholder() {	
+	// Funktion för att uppdatera Placeholder när man byter mellan sök-typ
 	var radios = document.getElementsByName("search_type");
-   if(radios['0'].checked === true) { 
+    if(radios['0'].checked === true) { 
 		document.getElementById('username').setAttribute("placeholder", "Sök efter användare på instagram");
-		
 	} else {
 		document.getElementById('username').setAttribute("placeholder", "Sök efter hashtag på instagram");		
-	}
-	
+	}	
 }
 
 
 function pressEnter(e) {
-	  var keyCode = e.keyCode;
-	  if(keyCode==13) {
-	    getUserInfo();
-	  } 
+	// Funktion för att köra scriptet ifall man trycker på enter i input-rutan
+	var keyCode = e.keyCode;
+		if(keyCode==13) {
+    		getUserInfo();
+  		} 
 	}
 
 function selectAll() {
+	// Markerar all text i input-rutan ifall man klickar
     document.getElementById("username").focus();
     document.getElementById("username").select();
 	}
@@ -45,9 +43,7 @@ function JSONPRequest(url) {
     var s = document.createElement('script');
     s.setAttribute('src', url);
     document.getElementsByTagName('head')[0].appendChild(s);
-    
-    //inputTransition();
-	}
+   	}
 
 /* ------------------------------------------------------------------------------------------------------ */
 
@@ -60,24 +56,35 @@ function getBilder(searchType,string){
 			alert('fel');	
 		}
 		
-	// Kallar på animeringen och bestämmer dess variabler enligt: animate(elem,styling,unit,from,to,time)
-	animate(
-    	document.getElementById('centerDiv'),
-    	"margin-top","px",parseInt(centerDivCSS.marginTop),40,animationLength
-	);		
-}
+		// Kallar på animeringen och bestämmer dess variabler enligt: animate(elem,styling,unit,from,to,time)
+		animate(
+	    	document.getElementById('centerDiv'),
+	    	"margin-top","px",parseInt(centerDivCSS.marginTop),40,animationLength
+		);		
+	}
 
 	function callbackBilder(response){
-		console.log(response);	
+	
+		searchBox = document.getElementById('username');
+		
+		// Raderar eventuellt felmeddelande
+		searchBox.classList.remove('redBorder');	
 		
 		// Nollställer bild-boxen
 		document.getElementById("pictures").innerHTML = "";
-
+		
 		var data;
 		data=response.data;
+	
+		// Kontrollerar om det är ett tomt sökresultat
+		if (data.length === 0){
+			searchBox.value = "";
+			searchBox.classList.add('redBorder');
+			searchBox.setAttribute("placeholder", "Ingen hashtag hittades");
+			}
 		
 		setTimeout(function(){
-		// Loopar ut resultatet
+
 		for(var i=0;i<data.length;i++){
 			var holder=document.createElement('div');
 				holder.className="puff";
@@ -99,10 +106,6 @@ function getBilder(searchType,string){
 			holder.appendChild(inner);
 			inner.appendChild(images);
 			inner.appendChild(caption);
-			
-			/*if(document.getElementById(caption.id)!=''){
-				document.getElementById(caption.id).style["padding"]="0";
-			}*/
 
 			document.getElementById('pictures').appendChild(holder);
 		}}, animationLength)
@@ -114,37 +117,50 @@ function getBilder(searchType,string){
 function getUserInfo (){	
   
     var radios = document.getElementsByName("search_type");
-	var searchString = document.getElementById('username').value;
+    var searchBox = document.getElementById('username');
+	var searchString = searchBox.value;
  
- // Kollar så att en radioknapp är vald och att det finns något i sökfältet
+	// Kollar så att en radioknapp är vald och att det finns något i sökfältet
    if(radios['0'].checked === true && searchString !== "") { 
+
 	   // Man har valt att söka på användare
 	   JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
-	 } else if(radios['1'].checked === true && searchString !== ""){ 
+	
+	} else if(radios['1'].checked === true && searchString !== ""){ 
+
 		 // Om man inte söker på användare, så söker på man på hashtag
 		getBilder('hashtag', searchString);
+	
 	} else {
-		// Rödmarkerar sökfältet genom att lägga till classen redBorder
-		document.getElementById('username').classList.add('redBorder');
-		// Ändrar sökfältets placeholder
-		document.getElementById('username').setAttribute("placeholder", "Du måste skriva något här");
+
+		// Rödmarkerar sökfältet genom att lägga till classen redBorder, ändrar även sökfältets placeholder
+		searchBox.classList.add('redBorder');
+		searchBox.setAttribute("placeholder", "Du måste skriva något här");
 		
 	}
 }
 	
 	function callbackUserInfo (response){
-		console.log(response);
+		var searchBox = document.getElementById("username");
 		var data;
 		data = response.data;
-		document.getElementById('username').classList.remove('redBorder');	
-		if (data[0].length = 1){
-			console.log('Retrieved the user ID from instagrams API');
+		
+		if (data.length === 0){
+			// Hittade ingen användare som matchade sökning
+			searchBox.value = "";
+			searchBox.classList.add('redBorder');
+			searchBox.setAttribute("placeholder", "Hittade ingen användare..");
+
+		} else if (data[0].length = 1){
+			// Hittade en användare och har hämtat userid, Bilderna hämtas.
 			userID = data[0].id;
-			console.log('user ID is: '+userID);
 			getBilder('user', userID); // Hämtar och visar bilder
-			
+	
 		}else{
-			console.log('Could not retrieve the user ID from instagrams API');
+			// Fel, Gick ej att ladda Userid
+			searchBox.classList.add('redBorder');
+			searchBox.setAttribute("placeholder", "Fel, var god ladda om sidan.");
+			
 		}
 
 	}
