@@ -116,7 +116,7 @@ function getUserInfo (){
     var radios = document.getElementsByName("search_type");
 	var searchString = document.getElementById('username').value;
  
- 
+ // Kollar så att en radioknapp är vald och att det finns något i sökfältet
    if(radios['0'].checked === true && searchString !== "") { 
 	   // Man har valt att söka på användare
 	   JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
@@ -124,8 +124,10 @@ function getUserInfo (){
 		 // Om man inte söker på användare, så söker på man på hashtag
 		getBilder('hashtag', searchString);
 	} else {
-		alert('Inget är sökt på');
-		//rödmarkera
+		// Rödmarkerar sökfältet genom att lägga till classen redBorder
+		document.getElementById('username').classList.add('redBorder');
+		// Ändrar sökfältets placeholder
+		document.getElementById('username').setAttribute("placeholder", "Du måste skriva något här");
 		
 	}
 }
@@ -133,7 +135,8 @@ function getUserInfo (){
 	function callbackUserInfo (response){
 		console.log(response);
 		var data;
-		data = response.data;	
+		data = response.data;
+		document.getElementById('username').classList.remove('redBorder');	
 		if (data[0].length = 1){
 			console.log('Retrieved the user ID from instagrams API');
 			userID = data[0].id;

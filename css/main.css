@@ -19,6 +19,10 @@ header{
 			border: solid 1px #0085CA;
 			outline: none;
 		}
+		header input.redBorder {
+			border: solid 1px #EF3340;
+			outline: none;
+		}
 	#search_button{
 		background-color: black;
 		color:#fff;
@@ -52,8 +56,6 @@ label > input + img{ /* IMAGE STYLES */
 label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	border: solid 1px #0085CA;
 	}
-
-
 
 
 .puff_box {
@@ -109,6 +111,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	color: #fff;
 	text-align:center;
 	margin-top: -100px;
+	overflow: auto;
 	}.puff .inner:hover .caption {
 		display:block;
 		}
