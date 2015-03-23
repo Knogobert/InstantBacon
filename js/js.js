@@ -7,7 +7,25 @@ document.getElementById("search_button").addEventListener("click", getUserInfo);
 document.getElementById("username").addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
 document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
 
+
+document.getElementsByName("search_type")['0'].addEventListener("click", switchPlaceholder); // Klickar man i text-rutan markar all text
+document.getElementsByName("search_type")['1'].addEventListener("click", switchPlaceholder); // Klickar man i text-rutan markar all text
+
+
+
 /* ------------------------------------------------------------------------------------------------------ */
+
+function switchPlaceholder() {	
+	var radios = document.getElementsByName("search_type");
+   if(radios['0'].checked === true) { 
+		document.getElementById('username').setAttribute("placeholder", "Sök efter användare på instagram");
+		
+	} else {
+		document.getElementById('username').setAttribute("placeholder", "Sök efter hashtag på instagram");		
+	}
+	
+}
+
 
 function pressEnter(e) {
 	  var keyCode = e.keyCode;
@@ -94,17 +112,24 @@ function getBilder(searchType,string){
 /* ------------------------------------------------------------------------------------------------------ */
 
 function getUserInfo (){	
-	var searchType = document.getElementById('search_type').value;	
+  
+    var radios = document.getElementsByName("search_type");
 	var searchString = document.getElementById('username').value;
-
-	if(searchType === "user") {
-		// Hämtar bilder efter Användarnamn
-		JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
-		} else {
-		// Hämtar bilder efter hashtag
+ 
+ 
+   if(radios['0'].checked === true && searchString !== "") { 
+	   // Man har valt att söka på användare
+	   JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
+	 } else if(radios['1'].checked === true && searchString !== ""){ 
+		 // Om man inte söker på användare, så söker på man på hashtag
 		getBilder('hashtag', searchString);
-		}	
+	} else {
+		alert('Inget är sökt på');
+		//rödmarkera
+		
 	}
+}
+	
 	function callbackUserInfo (response){
 		console.log(response);
 		var data;
