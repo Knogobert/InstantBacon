@@ -8,10 +8,18 @@
 	<body>
 		<header>
 			<div id="centerDiv">
-				<select id="search_type">
-				  <option value="user">User</option>
-				  <option value="hashtag">#</option>
-				</select>
+				
+				<div id="radio_box">
+					<label>
+					  <input type="radio" name="search_type" value="user" checked />
+					  <img src="img/icon_user.png">
+					</label>
+					<label>
+					  <input type="radio" name="search_type" value="hashtag" />
+					  <img src="img/icon_hashtag.png">
+					</label>	
+				</div>
+							
 				<input type="text" name="username" id="username" placeholder="Sök efter användare på instagram" value="jaredchambers" />
 				<input type="button" value="Sök" id="search_button" />
 			</div>

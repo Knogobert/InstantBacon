@@ -9,21 +9,14 @@ header{
 	max-width: 1000px;
 	height: 100px;
 	}
-	header select{
-		font-size:20px;
-		padding:20px;	
-		border: 1px solid black;
-		width:10%;
-		height:65px;
-		text-align:center;
-		}
+
 	header input{
 		font-size:20px;
 		padding:20px;	
 		border: 1px solid black;
-		width:50%;
+		width:40%;
 		}header input:focus {
-			border-bottom: solid 5px #0085CA;
+			border: solid 1px #0085CA;
 			outline: none;
 		}
 	#search_button{
@@ -33,6 +26,35 @@ header{
 		width:20%;
 		margin-left:50px;
 		}
+
+
+#radio_box {
+	width:140px;
+	float:left;
+	padding:0;
+	margin:0;
+	margin-top:-2px;
+}
+
+label > input { /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute;
+  padding:0;
+  margin:0;
+  width:auto;
+  
+}
+label > input + img{ /* IMAGE STYLES */
+  width:65px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+	border: solid 1px #0085CA;
+	}
+
+
+
 
 .puff_box {
 	overflow:hidden;
@@ -68,7 +90,7 @@ header{
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	bottom: 65px;
 	max-width: 800px;
 	height: 0;
 	-webkit-transition: all 0.2s ease;
@@ -80,7 +102,7 @@ header{
 .puff .caption {
 	display: none;
 	position: absolute;
-	bottom: 5px;
+	bottom: 7px;
 	left: 5px;
 	right: 5px;
 	background-color: #000;
