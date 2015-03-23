@@ -1,7 +1,7 @@
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 //var clientId	= 'a880b37bc8c6409fa2fecd66255b7e44'; används ej..
 //var apiUri		= 'http://www.niklasbrandstrom.se/api/'; används ej
-var countImg 		= '33'; // Antal bilder att visa
+var countImg 		= '100'; // Antal bilder att visa
 
 document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
 document.getElementById("username").addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
@@ -61,7 +61,6 @@ function getBilder(searchType,string){
 		setTimeout(function(){
 		// Loopar ut resultatet
 		for(var i=0;i<data.length;i++){
-			
 			var holder=document.createElement('div');
 				holder.className="puff";
 			var inner=document.createElement('div');
@@ -74,7 +73,7 @@ function getBilder(searchType,string){
 			// Kontrollerar om bilden har kommentar eller ej
 			if(data[i].caption != null) { 
 				caption.innerHTML=data[i].caption.text;
-				//caption.id.style.padding='10px';
+				caption.style.padding='10px';
 				}
 
 			images.setAttribute('src',data[i].images.standard_resolution.url);
@@ -101,7 +100,7 @@ function getUserInfo (){
 	if(searchType === "user") {
 		// Hämtar bilder efter Användarnamn
 		JSONPRequest('https://api.instagram.com/v1/users/search?q='+searchString+'&access_token='+accessToken+'&callback=callbackUserInfo');
-	} else {
+		} else {
 		// Hämtar bilder efter hashtag
 		getBilder('hashtag', searchString);
 		}	
@@ -119,7 +118,8 @@ function getUserInfo (){
 		}else{
 			console.log('Could not retrieve the user ID from instagrams API');
 		}
-}
+
+	}
 
 /* ------------------------------------------------------------------------------------------------------ */
 
