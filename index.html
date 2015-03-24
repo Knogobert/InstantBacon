@@ -4,42 +4,38 @@
 		<title>InstantBacon</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="css/main.css" title="main.css" type="text/css" media="screen" charset="utf-8" />
-		<script type="text/javascript" src="https://rawgit.com/julianlloyd/scrollReveal.js/master/dist/scrollReveal.min.js"></script><!-- Fick tyvärr använda GitHub som CDN, inte det bästa eller det snabbaste, det vet vi. Men det är en temporär lösning -->
-		<script>
-			if (typeof scrollReveal == 'undefined') {
-			    document.write(unescape("%3Cscript src='js/scrollReveal.min.js' type='text/javascript'%3E%3C/script%3E"));
-			}
-		</script><!-- Vår "lokala" scriptfil laddas ned ifall CDN-versionen inte laddades ned -->
 	</head>
 	<body>
 		<header>
 			<div id="centerDiv">
-				
 				<div id="radio_box">
 					<label>
 					  <input type="radio" name="search_type" value="user" checked />
-					  <img src="img/icon_user.png">
+					  <img src="img/icon_user.png" alt="Användare">
 					</label>
 					<label>
 					  <input type="radio" name="search_type" value="hashtag"  />
-					  <img src="img/icon_hashtag.png">
+					  <img src="img/icon_hashtag.png" alt="#">
 					</label>	
-				</div>
-							
+				</div>	
 				<input type="text" name="username" id="username" placeholder="Sök efter användare på instagram"  />
 				<input type="button" value="Sök" id="search_button" />
 			</div>
 		</header>
 		<main>
-			
-			<div class="puff_box" id="pictures">
-								
+			<div class="puff_box" id="pictures">				
 			</div>
-	
 		</main>
 		<footer>
 			Av Niklas, Sven & Oscar
 		</footer>
-		<script type="text/javascript" src="js/js.js"></script><!-- Flyttade ner den hit för att man ska kunna få en value från inputfältet-->
+		<script type="text/javascript" src="https://rawgit.com/julianlloyd/scrollReveal.js/master/dist/scrollReveal.min.js"></script>
+		<!-- Fick tyvärr använda GitHub som CDN, inte det bästa eller det snabbaste, det vet vi. Men det är en temporär lösning -->
+		<script>
+			if (typeof scrollReveal == 'undefined') {
+			    document.write(unescape("%3Cscript src='js/scrollReveal.min.js' type='text/javascript'%3E%3C/script%3E"));
+			}
+		</script><!-- Vår "lokala" scriptfil laddas ned ifall CDN-versionen inte laddades ned -->
+		<script type="text/javascript" src="js/js.js"></script>
 	</body>
 </html>

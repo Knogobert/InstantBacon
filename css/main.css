@@ -2,35 +2,35 @@ body {
 	font-family: arial;
 	font-size:12px;
 	}
-
 header{
 	margin: 0 auto;
 	text-align:center;
 	max-width: 1000px;
 	height: 100px;
 	}
-
 	header input{
 		font-size:20px;
 		padding:20px;	
 		border: 1px solid black;
 		width:40%;
-		}header input:focus {
+		}
+		header input:focus {
 			border: solid 1px #0085CA;
 			outline: none;
-		}
+			}
 		header input.redBorder {
 			border: solid 1px #EF3340;
 			outline: none;
-		}
-	#search_button{
-		background-color: black;
-		color:#fff;
-		padding: 20px 30px;
-		width:20%;
-		margin-left:50px;
-		}
-
+			}
+		#search_button{
+			display: block;
+			background-color: black;
+			color:#fff;
+			padding: 20px 30px;
+			width:90%;
+			margin:0 auto;
+			margin-top:20px;
+			}
 
 #radio_box {
 	width:140px;
@@ -38,29 +38,46 @@ header{
 	padding:0;
 	margin:0;
 	margin-top:-2px;
-}
-
-label > input { /* HIDE RADIO */
-  visibility: hidden; /* Makes input not-clickable */
-  position: absolute;
-  padding:0;
-  margin:0;
-  width:auto;
-  
-}
-label > input + img{ /* IMAGE STYLES */
-  width:65px;
-  cursor:pointer;
-  border:2px solid transparent;
-}
-label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-	border: solid 1px #0085CA;
+	margin-left:20px;
 	}
+	label > input { 
+	visibility: hidden; 
+	position: absolute;
+	padding:0;
+	margin:0;
+	width:auto; 
+	}
+	label > input + img{ 
+		width:65px;
+		cursor:pointer;
+		border:2px solid transparent;
+		}
+	label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+		border: solid 1px #0085CA;
+		}
 
+#centerDiv {
+	z-index: 5000;
+	position: fixed;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 65px;
+	max-width: 800px;
+	height: 0;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	}
 
 .puff_box {
 	overflow:hidden;
-
+	margin-top:20px;
 	padding-top:50px;
 	}
 	.puff_box p, .puff_box h3  {
@@ -81,41 +98,21 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 		.puff img {
 		width: 100%;
 		}
-
-#centerDiv {
-	z-index: 5000;
-	position: fixed;
-	margin-top: auto;
-	margin-right: auto;
-	margin-bottom: auto;
-	margin-left: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 65px;
-	max-width: 800px;
-	height: 0;
-	-webkit-transition: all 0.2s ease;
-	-moz-transition: all 0.2s ease;
-	-o-transition: all 0.2s ease;
-	transition: all 0.2s ease;
-}
-
-.puff .caption {
-	display: none;
-	position: absolute;
-	bottom: 7px;
-	left: 5px;
-	right: 5px;
-	background-color: #000;
-	color: #fff;
-	text-align:center;
-	margin-top: -100px;
-	max-height: 296px;
-	overflow: auto;
-	}.puff .inner:hover .caption {
-		display:block;
-		}
+		.puff .caption {
+			display: none;
+			position: absolute;
+			bottom: 7px;
+			left: 5px;
+			right: 5px;
+			background-color: #000;
+			color: #fff;
+			text-align:center;
+			margin-top: -100px;
+			max-height: 296px;
+			overflow: auto;
+			}.puff .inner:hover .caption {
+				display:block;
+				}
 		
 footer {
 	margin: 100px auto 25px auto;
@@ -125,17 +122,28 @@ footer {
 	bottom: 0;
 	left: 0;
 	right: 0;
-}
+	}
 		
 		
 @media (min-width: 460px) {  
 /* ------------------------------------------- */
+
+
+#search_button{
+	display:inline;
+	width:20%;
+	margin-left:50px;
+	margin-top:0;
+	}
+
+.puff_box {
+	margin-top:0px;	
+	}
 	.puff_box > .puff {
 		width:50%;
 		float:left;
 		margin:0px;
 		}
-		
 		.puff_box > .puff:nth-child(2n + 3) {
 		clear:left;
 		}		
