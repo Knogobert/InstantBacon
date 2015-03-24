@@ -1,4 +1,4 @@
-(function(ctx, undefined){ // Gör att vår function inte är global (avslutas i slutet)
+//(function(ctx, undefined){ // Gör att vår function inte är global (avslutas i slutet); ctx står för context, till för att kunna scopa in i vår function
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 var countImg 	= '100'; // Antal bilder att visa
 
@@ -8,8 +8,6 @@ document.getElementById("username").addEventListener("click", selectAll); // Kli
 document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
 document.getElementsByName("search_type")['0'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'user'-radio
 document.getElementsByName("search_type")['1'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'hashtag'-radio
-
-
 
 /* ------------------------------------------------------------------------------------------------------ */
 
@@ -186,4 +184,7 @@ function animate(elem,styling,unit,from,to,time) {
 		p.style.position='relative';
 		document.getElementsByTagName('footer')[0].style.position='relative';
 	}, time+300);
-}})(window);
+	
+//ctx.InstantBacon=InstantBacon;// Denna delen fungerar inte just nu, vill lägga allting i en: function InstantBacon(){}
+
+}//})(window);
