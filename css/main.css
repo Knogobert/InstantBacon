@@ -111,6 +111,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	color: #fff;
 	text-align:center;
 	margin-top: -100px;
+	max-height: 296px;
 	overflow: auto;
 	}.puff .inner:hover .caption {
 		display:block;
