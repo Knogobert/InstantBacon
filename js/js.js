@@ -1,5 +1,5 @@
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
-var countImg 		= '100'; // Antal bilder att visa
+var countImg 	= '100'; // Antal bilder att visa
 
 // Eventlistners
 document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
@@ -59,7 +59,7 @@ function getBilder(searchType,string){
 		// Kallar på animeringen och bestämmer dess variabler enligt: animate(elem,styling,unit,from,to,time)
 		animate(
 	    	document.getElementById('centerDiv'),
-	    	"margin-top","px",parseInt(centerDivCSS.marginTop),40,animationLength
+	    	"margin-top","px",parseInt(centerDivCSS.marginTop),40,300
 		);		
 	}
 
@@ -108,7 +108,7 @@ function getBilder(searchType,string){
 			inner.appendChild(caption);
 
 			document.getElementById('pictures').appendChild(holder);
-		}}, animationLength)
+		}}, 100)
 		
 	}
 
@@ -170,7 +170,6 @@ function getUserInfo (){
 // Animerar inputfältet
 var p = document.getElementById("centerDiv");
 var centerDivCSS = p.currentStyle || window.getComputedStyle(p);
-var animationLength = 300; // längd i ms
 
 function animate(elem,styling,unit,from,to,time) {
 	if( !elem) return;
