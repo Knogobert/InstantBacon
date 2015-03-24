@@ -1,4 +1,4 @@
-//(function(ctx, undefined){ // Gör att vår function inte är global (avslutas i slutet); ctx står för context, till för att kunna scopa in i vår function
+(function(ctx){ // Gör att vår function inte är global (avslutas i slutet); ctx står för context, till för att kunna scopa in i vår funktion
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 var countImg 	= '100'; // Antal bilder att visa
 
@@ -184,7 +184,7 @@ function animate(elem,styling,unit,from,to,time) {
 		p.style.position='relative';
 		document.getElementsByTagName('footer')[0].style.position='relative';
 	}, time+300);
-	
-//ctx.InstantBacon=InstantBacon;// Denna delen fungerar inte just nu, vill lägga allting i en: function InstantBacon(){}
-
-}//})(window);
+}
+ctx.callbackUserInfo=callbackUserInfo;// Detta är för att callbackarna skall kunna anropas utanför funktionen
+ctx.callbackBilder=callbackBilder;
+})(window);
