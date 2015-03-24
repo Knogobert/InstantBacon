@@ -1,3 +1,4 @@
+(function(ctx, undefined){ // Gör att vår function inte är global (avslutas i slutet)
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 var countImg 	= '100'; // Antal bilder att visa
 
@@ -185,4 +186,4 @@ function animate(elem,styling,unit,from,to,time) {
 		p.style.position='relative';
 		document.getElementsByTagName('footer')[0].style.position='relative';
 	}, time+300);
-}
+}})(window);

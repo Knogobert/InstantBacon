@@ -3,7 +3,13 @@
 	<head>
 		<title>InstantBacon</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="css/main.css" title="" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="css/main.css" title="main.css" type="text/css" media="screen" charset="utf-8" />
+		<script type="text/javascript" src="https://rawgit.com/julianlloyd/scrollReveal.js/master/dist/scrollReveal.min.js"></script><!-- Fick tyvärr använda GitHub som CDN, inte det bästa eller det snabbaste, det vet vi. Men det är en temporär lösning -->
+		<script>
+			if (typeof scrollReveal == 'undefined') {
+			    document.write(unescape("%3Cscript src='js/scrollReveal.min.js' type='text/javascript'%3E%3C/script%3E"));
+			}
+		</script><!-- Vår "lokala" scriptfil laddas ned ifall CDN-versionen inte laddades ned -->
 	</head>
 	<body>
 		<header>
@@ -34,6 +40,6 @@
 		<footer>
 			Av Niklas, Sven & Oscar
 		</footer>
-		<script src="js/js.js"></script><!-- Flyttade ner den hit för att man ska kunna få en value från inputfältet-->
+		<script type="text/javascript" src="js/js.js"></script><!-- Flyttade ner den hit för att man ska kunna få en value från inputfältet-->
 	</body>
 </html>
