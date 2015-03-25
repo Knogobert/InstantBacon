@@ -2,10 +2,13 @@
 var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
 var countImg 	= '100'; // Antal bilder att visa
 
+// Här tas sökordet, vill man i förlänge inte ha en sökruta byts denna ut mot tex "Bacon"
+var searchTerm = document.getElementById("username");
+
 // Eventlistners
 document.getElementById("search_button").addEventListener("click", getUserInfo); // Klickar man på knappen så söker den
-document.getElementById("username").addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
-document.getElementById("username").addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
+searchTerm.addEventListener("click", selectAll); // Klickar man i text-rutan markar all text
+searchTerm.addEventListener("keydown", pressEnter, false); // Ifall man trycker enter i fältet så söker den
 document.getElementsByName("search_type")['0'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'user'-radio
 document.getElementsByName("search_type")['1'].addEventListener("click", switchPlaceholder); // Lägg till onClick på 'hashtag'-radio
 
@@ -15,9 +18,9 @@ document.getElementsByName("search_type")['1'].addEventListener("click", switchP
 function switchPlaceholder() {	
 	var radios = document.getElementsByName("search_type");
     if(radios['0'].checked === true) { 
-		document.getElementById('username').setAttribute("placeholder", "Sök efter användare på instagram");
+		searchTerm.setAttribute("placeholder", "Sök efter användare på instagram");
 	} else {
-		document.getElementById('username').setAttribute("placeholder", "Sök efter hashtag på instagram");		
+		searchTerm.setAttribute("placeholder", "Sök efter hashtag på instagram");		
 	}	
 }
 
@@ -31,8 +34,8 @@ function pressEnter(e) {
 
 // Markerar all text i input-rutan ifall man klickar
 function selectAll() {
-    document.getElementById("username").focus();
-    document.getElementById("username").select();
+    searchTerm.focus();
+    searchTerm.select();
 	}
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -48,8 +51,7 @@ function JSONPRequest(url) {
 function getUserInfo (){	
   
     var radios = document.getElementsByName("search_type");
-    var searchBox = document.getElementById('username');
-	var searchString = searchBox.value;
+	var searchString = searchTerm.value;
  
 		// Kollar så att en radioknapp är vald och att det finns något i sökfältet
 	   if(radios['0'].checked === true && searchString !== "") { 
@@ -62,30 +64,29 @@ function getUserInfo (){
 		
 		} else {
 			// Rödmarkerar sökfältet genom att lägga till classen redBorder, ändrar även sökfältets placeholder
-			searchBox.classList.add('redBorder');
-			searchBox.setAttribute("placeholder", "Du måste skriva något här");
+			searchTerm.classList.add('redBorder');
+			searchTerm.setAttribute("placeholder", "Du måste skriva något här");
 			
 		}
 	}
 	
 	function callbackUserInfo (response){
-		var searchBox = document.getElementById("username");
 		var data;
 		data = response.data;
 		
 		if (data.length === 0){
 			// Hittade ingen användare som matchade sökning
-			searchBox.value = "";
-			searchBox.classList.add('redBorder');
-			searchBox.setAttribute("placeholder", "Hittade ingen användare..");
+			searchTerm.value = "";
+			searchTerm.classList.add('redBorder');
+			searchTerm.setAttribute("placeholder", "Hittade ingen användare..");
 		} else if (data[0].length = 1){
 			// Hittade en användare och har hämtat userid, Bilderna hämtas.
 			userID = data[0].id;
 			getBilder('user', userID); // Hämtar och visar bilder
 		}else{
 			// Fel, Gick ej att ladda Userid
-			searchBox.classList.add('redBorder');
-			searchBox.setAttribute("placeholder", "Fel, var god ladda om sidan.");	
+			searchTerm.classList.add('redBorder');
+			searchTerm.setAttribute("placeholder", "Fel, var god ladda om sidan.");	
 		}
 	}   	
 
@@ -100,8 +101,8 @@ function getBilder(searchType,string){
 			JSONPRequest("https://api.instagram.com/v1/tags/"+string+"/media/recent/?access_token="+accessToken+"&count="+countImg+"&callback=callbackBilder");
 		} else {
 			// Om en annan radio-button har lyckats bli markerad visas ett felmeddelande....hur det nu skulle gå till.
-			document.getElementById("username").classList.add('redBorder');
-			document.getElementById("username").setAttribute("placeholder", "Fel, var god ladda om sidan.");
+			searchTerm.classList.add('redBorder');
+			searchTerm.setAttribute("placeholder", "Fel, var god ladda om sidan.");
 		}
 		
 		// Kallar på animeringen och bestämmer dess variabler enligt: animate(elem,styling,unit,from,to,time)
@@ -112,23 +113,21 @@ function getBilder(searchType,string){
 	}
 
 	function callbackBilder(response){
-	
-		searchBox = document.getElementById('username');
 		
 		// Raderar eventuellt felmeddelande
-		searchBox.classList.remove('redBorder');	
+		searchTerm.classList.remove('redBorder');	
 		
 		// Nollställer bild-boxen
-		document.getElementById("pictures").innerHTML = "";
+		document.getElementById("ib_pictures").innerHTML = "";
 		
 		var data;
 		data=response.data;
 	
 		// Kontrollerar om det är ett tomt sökresultat
 		if (data.length === 0){
-			searchBox.value = "";
-			searchBox.classList.add('redBorder');
-			searchBox.setAttribute("placeholder", "Ingen hashtag hittades");
+			searchTerm.value = "";
+			searchTerm.classList.add('redBorder');
+			searchTerm.setAttribute("placeholder", "Ingen hashtag hittades");
 			}
 
 		// Startar en fördröjning för att matcha inladdningen av bilderna mot animeringen av sökfältet
@@ -136,12 +135,12 @@ function getBilder(searchType,string){
 
 		for(var i=0;i<data.length;i++){
 			var holder=document.createElement('div');
-				holder.className="puff";
+				holder.className="ib_puff";
 			var inner=document.createElement('div');
-				inner.className="inner";
+				inner.className="ib_inner";
 			var caption=document.createElement('div');
-				caption.className="caption";
-				caption.id="caption"+i;
+				caption.className="ib_caption";
+				caption.id="ib_caption"+i;
 			var images=document.createElement('img');
 			
 			// Kontrollerar om bilden har kommentar eller ej
@@ -158,7 +157,7 @@ function getBilder(searchType,string){
 			holder.appendChild(inner);
 			inner.appendChild(images);
 			inner.appendChild(caption);
-			document.getElementById('pictures').appendChild(holder);
+			document.getElementById('ib_pictures').appendChild(holder);
 			
 			}window.sr = new scrollReveal(); // Aktiverar Smooth-scroll
 		}, 100) // Fördröjning på animationen av sökrutorna.
