@@ -1,5 +1,5 @@
 (function(ctx){ // Gör att vår function inte är global (avslutas i slutet); ctx står för context, till för att kunna scopa in i vår funktion
-var accessToken = '144505288.a880b37.f60727772f8e413dad52225165cd1a42';
+var accessToken = ''; // Fyll i Accesstoken för Instagram här.
 var countImg 	= '100'; // Antal bilder att visa
 
 // Här tas sökordet, vill man i förlänge inte ha en sökruta byts denna ut mot tex "Bacon"
@@ -82,6 +82,7 @@ function getUserInfo (){
 		} else if (data[0].length = 1){
 			// Hittade en användare och har hämtat userid, Bilderna hämtas.
 			userID = data[0].id;
+			console.log(userID);
 			getBilder('user', userID); // Hämtar och visar bilder
 		}else{
 			// Fel, Gick ej att ladda Userid
@@ -126,6 +127,8 @@ function getBilder(searchType,string){
 		// Kontrollerar om det är ett tomt sökresultat
 		if (data.length === 0){
 			searchTerm.value = "";
+			
+			// Då användaren redan kontrollerats om den finns, så kontrolleras det här efter hashtag
 			searchTerm.classList.add('redBorder');
 			searchTerm.setAttribute("placeholder", "Ingen hashtag hittades");
 			}
